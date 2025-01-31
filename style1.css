@@ -1,0 +1,133 @@
+body {
+    font-family: 'Arial', sans-serif;
+    color: #111827; 
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #111827;
+}
+
+
+.navbar {
+    background-color: #4F46E5 !important;
+}
+
+.navbar-brand {
+    color: #fff !important; 
+}
+
+.nav-link {
+    color: #fff !important; 
+}
+
+.navbar-nav .nav-item .nav-link:hover {
+    color: #818CF8 !important; 
+}
+.nav-item img.rounded-circle {
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+}
+
+/* Post Section */
+textarea.form-control {
+    border-radius: 10px;
+    border: 1px solid #e2e8f0;
+    font-size: 16px;
+}
+
+textarea.form-control:focus {
+    border-color: #4F46E5;
+}
+
+/* Card Styles */
+.card {
+    border-radius: 10px;
+    border: none;
+    background-color: #fff;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Image Upload Button */
+input[type="file"] {
+    display: none;
+}
+
+
+.file{
+    padding: 7px;
+}
+
+.post{
+    margin-bottom: 7px;
+}
+/* Interaction Buttons (Like, Comment, Share) */
+.interaction-buttons button {
+    border-radius: 30px;
+    padding: 10px 20px;
+    font-size: 16px;
+    margin-right: 10px;
+    transition: all 0.3s ease;
+    border: 1px solid #e2e8f0;
+    color: #4F46E5;
+}
+
+.interaction-buttons button:hover {
+    background-color: #4F46E5;
+    color: #F3F4F6;
+    transform: translateY(-3px);
+}
+
+.btn-interact {
+    background-color: #fff;
+    color: #4F46E5;
+    border: 1px solid #e2e8f0;
+}
+
+.btn-interact:hover {
+    background-color: #4F46E5;
+    color: #fff;
+}
+
+
+footer {
+    background-color: #fff;
+    border-top: 1px solid #e2e8f0;
+}
+
+
+button.btn-primary {
+    background-color: #4F46E5;
+    border-color: #4F46E5;
+}
+
+button.btn-primary:hover {
+    background-color: #818CF8; 
+    border-color: #818CF8;
+}
+
+
+@media (max-width: 767px) {
+    .col-md-4, .col-md-8 {
+        margin-top: 20px;
+    }
+
+    .post .card-body {
+        padding: 15px;
+    }
+
+    .interaction-buttons button {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+}

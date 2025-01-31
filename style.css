@@ -1,0 +1,84 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+body{
+    /* background-color: #f9fafb !important; */
+    /* background-color: #818cf8 !important; */
+    background: linear-gradient(45deg, #818cf8, #f9fafb);
+    color: #111827;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.signupsection, .loginsection{
+    position: relative;
+    max-width: 440px;
+    width: 100%;
+    /* border: 1px solid red; */
+    overflow: hidden;
+}
+.signupsection:before, .loginsection:before{
+    content: '';
+    width: 80px;
+    height: 80px;
+    /* background-color: #818cf8; */
+    background: linear-gradient(45deg, #f9fafb, #818cf8);
+    position: absolute;
+    border-radius: 40%;
+    right: -15px;
+    top: -15px;
+   
+}
+.signupsection:after, .loginsection:after{
+    content: '';
+    width: 70px;
+    height: 70px;
+    /* background-color: #818cf8; */
+    background: linear-gradient(135deg, #f9fafb, #818cf8);
+    position: absolute;
+    border-radius: 40%;
+    right: -15px;
+    bottom: -10px;
+   
+}
+
+.loginsection{
+    animation: 1s zoom-in-and-out ease-in-out;
+}
+
+.signupsection{
+    animation: 1s zoom-in-and-out ease-in-out;
+}
+
+
+
+
+
+@keyframes zoom-in-and-out{
+    0%{
+        scale: 0%;
+    }
+    /* 50%{
+        scale: 50%;
+    } */
+    100%{
+        scale: 100%;
+    }
+}
+@media only screen and (max-width: 768px) {
+    .signupsection:after, .loginsection:after, .signupsection:before, .loginsection:before{
+        width: 70px;
+        height: 70px;
+    }
+}
+
+@media only screen and (max-width: 576px) {
+    .signupsection:after, .loginsection:after, .signupsection:before, .loginsection:before{
+        width: 60px;
+        height: 60px;
+    }
+}
