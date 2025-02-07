@@ -21,6 +21,11 @@ body{
     /* border: 1px solid red; */
     overflow: hidden;
 }
+.gradient{
+    background: linear-gradient(50deg, #4F46E5, #818cf8) !important;
+    color: transparent !important;
+    background-clip: text !important;
+}
 .signupsection:before, .loginsection:before{
     content: '';
     width: 80px;

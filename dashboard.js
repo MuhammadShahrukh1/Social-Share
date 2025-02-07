@@ -91,30 +91,42 @@ async function loadAllPost() {
                     userData.forEach((user) => {
                         userMap[user.userID] = user
                     })
-                    postData.forEach((post) => {
+                    let myPost = false; postData.forEach((post) => {
                         let postList = userMap[post.userID]
                         console.log(post)
+                        if (currentuserId === post.userID) {
+                            myPost = true;
+                        }
                         document.getElementById('postContainer').innerHTML += `
                             <div class="post">
             <div class="card mb-3">
               <div class="card-body">
-                <div class="d-flex align-items-center">
-                  <img src="${postList.profileImageUrl}" class="rounded-circle me-2" width="70px" alt="User" />
-                  <div>
+                <div class="d-flex align-items-center position-relative">
+                <div style="width:80px;height:80px;" class="me-3">
+                  <img src="${postList.profileImageUrl}" class="rounded-circle me-2" width="100%" height="100&" alt="User" />
+                </div>
+                  <div class="">
                     <h6 class="mb-1">${postList.name}</h6>
                     <small class="text-muted">${new Date(post.created_at
-                    ).toLocaleString()}</small>
+                        ).toLocaleString()}</small>
+                    ${myPost ? ` <div class="dropdown position-absolute top-0 end-0 bg-transparent">
+            <button class="bg-transparent border-0" id="navbardDropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-ellipsis"></i></button>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <button class="dropdown-item" type="button" onclick="deletePost(${post.id})">Delete</button>
+            </div>
+          </div>` : ''}
+
                   </div>
                 </div>
-                <p class="mt-3">${post.content}</p>
-                <div class="mt-3">
+                <p class="mt-5">${post.content}</p>
+                ${post.postImageUrl ? `<div class="mt-3">
                   <img src="${post.postImageUrl}" class="img-fluid rounded w-100" alt="Post Image">
-                </div>
+                </div>` : ''}
   
-                <div class="mt-3 interaction-buttons">
-                  <button class="btn btn-interact "><i class="bi bi-heart"></i> Like</button>
-                  <button class="btn btn-interact"><i class="bi bi-chat-left"></i> Comment</button>
-                  <button class="btn btn-interact"><i class="bi bi-share"></i> Share</button>
+                <div class="mt-3 d-flex">
+                <button style="width:calc(100% / 3);" class="btn btn-interact "><i class="fa-solid fa-thumbs-up"></i> Like</button>
+                <button style="width:calc(100% / 3);" class="btn btn-interact"><i class="fa-solid fa-comment"></i> Comment</button>
+                <button style="width:calc(100% / 3);" class="btn btn-interact"><i class="fa-solid fa-share"></i> Share</button>
                 </div>
               </div>
             </div>
@@ -137,4 +149,28 @@ if (postBtn) {
     postBtn.addEventListener('click', post)
 }
 
+async function deletePost(postId) {
+    try {
+        const { data, error } = await supabase
+            .from('posts')
+            .delete()
+            .eq('id', postId)
+            .select()
+        if (data) {
+            const { data: deleteImage, error: errorDuringDeleteImage } = await supabase
+                .storage
+                .from('postImages')
+                .remove([`public/${postId}`])
+            if (deleteImage) {
+                document.getElementById('postContainer').innerHTML = '';
+                loadAllPost();
+            }
+            if (errorDuringDeleteImage) throw errorDuringDeleteImage
+        }
+        if (error) throw error
+    } catch (error) {
+        console.log(error)
+    }
+}
+window.deletePost = deletePost;
 window.load = loadAllPost();
